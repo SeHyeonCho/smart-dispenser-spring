@@ -27,6 +27,9 @@ public class User extends BaseEntity {
     @Column(unique = true)
     private String email;
 
+    @Column(nullable = false)
+    private Role role;
+
     @OneToMany(mappedBy = "user")
     List<Dispenser> dispenserList = new ArrayList<>();
 
@@ -41,6 +44,7 @@ public class User extends BaseEntity {
         //User 도메인 안에서 encoding 로직 추가 할 예정
         user.password = password;
         user.email = email;
+        user.role = Role.ROLE_USER;
         return user;
     }
 
